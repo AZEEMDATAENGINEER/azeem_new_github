@@ -1,0 +1,22 @@
+{
+	"name": "6 WAIT ACTIVITY",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 5
+				}
+			}
+		],
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-22T17:29:20Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

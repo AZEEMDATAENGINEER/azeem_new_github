@@ -1,0 +1,54 @@
+{
+	"name": "8 FOR EACH ACTIVITY",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('Array input')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "temp",
+								"value": {
+									"value": "@mul(item(),2)",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"Array input": {
+				"type": "Array",
+				"defaultValue": [
+					5,
+					10,
+					15
+				]
+			},
+			"temp": {
+				"type": "Integer"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-02T01:59:22Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,40 @@
+{
+	"name": "PRACCTICE PARAMETER",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "A",
+					"value": {
+						"value": "@mul(pipeline().parameters.L,pipeline().parameters.B)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"L": {
+				"type": "int"
+			},
+			"B": {
+				"type": "int"
+			}
+		},
+		"variables": {
+			"A": {
+				"type": "Integer"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-01T04:24:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

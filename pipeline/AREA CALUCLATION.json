@@ -1,0 +1,82 @@
+{
+	"name": "AREA CALUCLATION",
+	"properties": {
+		"activities": [
+			{
+				"name": "SET LENGTH",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "LENGTH",
+					"value": "10"
+				}
+			},
+			{
+				"name": "Set BREADTH",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "BREADTH",
+					"value": "5"
+				}
+			},
+			{
+				"name": "AREA CALUCLATION",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "SET LENGTH",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set BREADTH",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "AREA",
+					"value": {
+						"value": "@string(mul(int(variables('LENGTH')),\nint(variables('BREADTH'))))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"AREA": {
+				"type": "String"
+			},
+			"LENGTH": {
+				"type": "String"
+			},
+			"BREADTH": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-22T03:26:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

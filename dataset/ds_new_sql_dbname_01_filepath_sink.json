@@ -1,0 +1,24 @@
+{
+	"name": "ds_new_sql_dbname_01_filepath_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_new_sql_dbname_01_blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "emp1.csv",
+				"container": "newsource01"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

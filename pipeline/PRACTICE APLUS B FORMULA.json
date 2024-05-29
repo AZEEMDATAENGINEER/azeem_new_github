@@ -1,0 +1,224 @@
+{
+	"name": "PRACTICE APLUS B FORMULA",
+	"properties": {
+		"activities": [
+			{
+				"name": "A",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "A",
+					"value": 5
+				}
+			},
+			{
+				"name": "B",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "B",
+					"value": 6
+				}
+			},
+			{
+				"name": "A SQUARE",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "A",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "A SQUARE",
+					"value": {
+						"value": "@mul(variables('A'),variables('A'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "B SQUARE",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "B",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "AB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "B SQUARE",
+					"value": {
+						"value": "@mul(variables('B'),variables('B'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "AB",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "AB",
+					"value": {
+						"value": "@mul(variables('A'),variables('B'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "TWO AB",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "A SQUARE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "B SQUARE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TWOAB",
+					"value": {
+						"value": "@mul(variables('AB'),2)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "X",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "TWO AB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "ASQUARE PLUS BSQUARE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "X",
+					"value": {
+						"value": "@add(variables('TWOAB'),variables('ASQUARE PLUS B SQUARE'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ASQUARE PLUS BSQUARE",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "B SQUARE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ASQUARE PLUS B SQUARE",
+					"value": {
+						"value": "@STRING(add(variables('A SQUARE'),variables('B SQUARE')))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"X": {
+				"type": "String"
+			},
+			"A SQUARE": {
+				"type": "Integer"
+			},
+			"TWOAB": {
+				"type": "Integer"
+			},
+			"B SQUARE": {
+				"type": "Integer"
+			},
+			"A": {
+				"type": "Integer",
+				"defaultValue": 5
+			},
+			"B": {
+				"type": "Integer",
+				"defaultValue": 6
+			},
+			"AB": {
+				"type": "Integer"
+			},
+			"ASQUARE PLUS B SQUARE": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-22T11:14:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

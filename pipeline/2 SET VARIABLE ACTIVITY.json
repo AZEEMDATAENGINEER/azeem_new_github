@@ -1,0 +1,32 @@
+{
+	"name": "2 SET VARIABLE ACTIVITY",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "LENGTH",
+					"value": 5
+				}
+			}
+		],
+		"variables": {
+			"LENGTH": {
+				"type": "Integer"
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-22T03:26:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

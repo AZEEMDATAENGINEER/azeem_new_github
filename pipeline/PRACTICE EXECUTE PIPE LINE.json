@@ -1,0 +1,30 @@
+{
+	"name": "PRACTICE EXECUTE PIPE LINE",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PRACCTICE PARAMETER",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"L": 10,
+						"B": 20
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-05-01T04:24:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

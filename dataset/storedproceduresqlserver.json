@@ -1,0 +1,13 @@
+{
+	"name": "storedproceduresqlserver",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_storedprocedure_01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

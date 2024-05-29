@@ -1,0 +1,281 @@
+{
+	"name": "DelimitedText12",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_efnblobapr24",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FILENAME": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FILENAME",
+					"type": "Expression"
+				},
+				"container": "source"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "Type",
+				"type": "String"
+			},
+			{
+				"name": "SKU",
+				"type": "String"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Published",
+				"type": "String"
+			},
+			{
+				"name": "Is featured?",
+				"type": "String"
+			},
+			{
+				"name": "Visibility in catalog",
+				"type": "String"
+			},
+			{
+				"name": "Short description",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "Date sale price starts",
+				"type": "String"
+			},
+			{
+				"name": "Date sale price ends",
+				"type": "String"
+			},
+			{
+				"name": "Tax status",
+				"type": "String"
+			},
+			{
+				"name": "Tax class",
+				"type": "String"
+			},
+			{
+				"name": "In stock?",
+				"type": "String"
+			},
+			{
+				"name": "Stock",
+				"type": "String"
+			},
+			{
+				"name": "Low stock amount",
+				"type": "String"
+			},
+			{
+				"name": "Backorders allowed?",
+				"type": "String"
+			},
+			{
+				"name": "Sold individually?",
+				"type": "String"
+			},
+			{
+				"name": "Weight (kg)",
+				"type": "String"
+			},
+			{
+				"name": "Length (cm)",
+				"type": "String"
+			},
+			{
+				"name": "Width (cm)",
+				"type": "String"
+			},
+			{
+				"name": "Height (cm)",
+				"type": "String"
+			},
+			{
+				"name": "Allow customer reviews?",
+				"type": "String"
+			},
+			{
+				"name": "Purchase note",
+				"type": "String"
+			},
+			{
+				"name": "Sale price",
+				"type": "String"
+			},
+			{
+				"name": "Regular price",
+				"type": "String"
+			},
+			{
+				"name": "Categories",
+				"type": "String"
+			},
+			{
+				"name": "Tags",
+				"type": "String"
+			},
+			{
+				"name": "Shipping class",
+				"type": "String"
+			},
+			{
+				"name": "Images",
+				"type": "String"
+			},
+			{
+				"name": "Download limit",
+				"type": "String"
+			},
+			{
+				"name": "Download expiry days",
+				"type": "String"
+			},
+			{
+				"name": "Parent",
+				"type": "String"
+			},
+			{
+				"name": "Grouped products",
+				"type": "String"
+			},
+			{
+				"name": "Upsells",
+				"type": "String"
+			},
+			{
+				"name": "Cross-sells",
+				"type": "String"
+			},
+			{
+				"name": "External URL",
+				"type": "String"
+			},
+			{
+				"name": "Button text",
+				"type": "String"
+			},
+			{
+				"name": "Position",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 1 name",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 1 value(s)",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 1 visible",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 1 global",
+				"type": "String"
+			},
+			{
+				"name": "Meta: _et_pb_post_hide_nav",
+				"type": "String"
+			},
+			{
+				"name": "Meta: _et_pb_page_layout",
+				"type": "String"
+			},
+			{
+				"name": "Meta: _et_pb_side_nav",
+				"type": "String"
+			},
+			{
+				"name": "Meta: _et_pb_use_builder",
+				"type": "String"
+			},
+			{
+				"name": "Meta: _et_pb_first_image",
+				"type": "String"
+			},
+			{
+				"name": "Meta: _et_pb_truncate_post",
+				"type": "String"
+			},
+			{
+				"name": "Meta: _et_pb_truncate_post_date",
+				"type": "String"
+			},
+			{
+				"name": "Meta: _et_pb_old_content",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 1 default",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 2 name",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 2 value(s)",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 2 visible",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 2 global",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 2 default",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 3 name",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 3 value(s)",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 3 visible",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 3 global",
+				"type": "String"
+			},
+			{
+				"name": "Attribute 3 default",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,58 @@
+{
+	"name": "2append variable activity pl",
+	"properties": {
+		"activities": [
+			{
+				"name": "Append variable1",
+				"type": "AppendVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "marks",
+					"value": "90"
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "temp",
+					"value": {
+						"value": "@variables('marks')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"marks": {
+				"type": "Array",
+				"defaultValue": [
+					89,
+					50,
+					78,
+					40
+				]
+			},
+			"temp": {
+				"type": "Array"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-04-27T10:08:22Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

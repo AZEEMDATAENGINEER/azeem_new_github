@@ -1,0 +1,9 @@
+{
+	"name": "efn-proj-dev-apr24-adf",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cc72b6a2-ae21-450b-b8ea-125e9f5cda4a",
+		"tenantId": "a35e4ea0-9765-4696-ac18-1c3fd66dd8b4"
+	}
+}

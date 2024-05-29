@@ -1,0 +1,32 @@
+{
+	"name": "10 PARAMETER USE EXECUTE",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "3 APPEND ACTIVITY_copy1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"VALUE": 90
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-23T06:00:19Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,87 @@
+{
+	"name": "current bill scenario",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@{pipeline().parameters.slab}",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "1",
+							"activities": [
+								{
+									"name": "set bill for slab 1",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "bill",
+										"value": {
+											"value": "@mul(pipeline().parameters.noofunits,5)",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"value": "set bill for slab 2",
+							"activities": [
+								{
+									"name": "Set variable1",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "bill",
+										"value": {
+											"value": "@add(1000,mul(sub(pipeline().parameters.noofunits,200),7))",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"slab": {
+				"type": "int"
+			},
+			"noofunits": {
+				"type": "int"
+			}
+		},
+		"variables": {
+			"unit price": {
+				"type": "Integer"
+			},
+			"bill": {
+				"type": "Integer"
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-26T05:01:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

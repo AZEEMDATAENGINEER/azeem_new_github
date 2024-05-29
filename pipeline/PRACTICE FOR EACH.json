@@ -1,0 +1,61 @@
+{
+	"name": "PRACTICE FOR EACH",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('NUMBERS')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "RESULT",
+								"value": {
+									"value": "@MUL(item(),2)",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"NUMBERS": {
+				"type": "Array",
+				"defaultValue": [
+					5,
+					10,
+					15,
+					20,
+					25,
+					30
+				]
+			},
+			"RESULT": {
+				"type": "Integer"
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-23T02:59:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

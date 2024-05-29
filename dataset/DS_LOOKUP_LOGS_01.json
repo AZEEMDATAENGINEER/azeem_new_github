@@ -1,0 +1,13 @@
+{
+	"name": "DS_LOOKUP_LOGS_01",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_STOREDPROCEDURE_NEW_SQLSERVER_01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

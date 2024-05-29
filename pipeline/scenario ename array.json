@@ -1,0 +1,188 @@
+{
+	"name": "scenario ename array",
+	"properties": {
+		"activities": [
+			{
+				"name": "Fetch Emp Data",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_scenario_emp",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "set total records in table",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Fetch Emp Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "count",
+					"value": {
+						"value": "@activity('Fetch Emp Data').output.count",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "set total records in table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(variables('current record'),variables('count'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Append Enames",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "ename",
+								"value": {
+									"value": "@activity('Fetch Emp Data').output.value[variables('current record')]",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set TEMP",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Append Enames",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "temp",
+								"value": {
+									"value": "@variables('current record')",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "INC CURERNT RECORD",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set TEMP",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "current record",
+								"value": {
+									"value": "@add(variables('temp'),1)",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Until1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ename temp",
+					"value": {
+						"value": "@variables('ename')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"count": {
+				"type": "Integer"
+			},
+			"ename": {
+				"type": "Array",
+				"defaultValue": []
+			},
+			"current record": {
+				"type": "Integer",
+				"defaultValue": 0
+			},
+			"temp": {
+				"type": "Integer"
+			},
+			"ename temp": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-25T06:05:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

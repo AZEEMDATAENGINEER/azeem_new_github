@@ -1,0 +1,23 @@
+{
+	"name": "ds_efnblonapr24_destination_emp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_efnblobapr24",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "destination"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

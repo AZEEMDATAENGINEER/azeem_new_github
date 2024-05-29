@@ -1,0 +1,30 @@
+{
+	"name": "6 execute pipeline with area caluclation",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "6 area caluclation with parameter",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"length": 20,
+						"breadth": 8
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-05-01T04:10:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

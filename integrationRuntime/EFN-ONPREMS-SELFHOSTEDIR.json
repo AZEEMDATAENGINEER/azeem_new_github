@@ -1,0 +1,6 @@
+{
+	"name": "EFN-ONPREMS-SELFHOSTEDIR",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

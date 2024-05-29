@@ -1,0 +1,70 @@
+{
+	"name": "3 APPEND ACTIVITY_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Append variable1",
+				"type": "AppendVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "MARKS",
+					"value": {
+						"value": "@pipeline().parameters.VALUE",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TEMP",
+					"value": {
+						"value": "@variables('MARKS')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"VALUE": {
+				"type": "int"
+			}
+		},
+		"variables": {
+			"MARKS": {
+				"type": "Array",
+				"defaultValue": [
+					89,
+					50,
+					78,
+					40
+				]
+			},
+			"TEMP": {
+				"type": "Array",
+				"defaultValue": []
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-23T06:00:19Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

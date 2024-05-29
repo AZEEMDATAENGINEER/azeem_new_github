@@ -1,0 +1,75 @@
+{
+	"name": "for each home work",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('source array')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Append variable1",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "DESTINATION",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "TEMP",
+								"value": {
+									"value": "@variables('source array')",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"source array": {
+				"type": "Array",
+				"defaultValue": [
+					"ADF",
+					"SQL",
+					"LOGICAPP",
+					"SYNAPSE"
+				]
+			},
+			"DESTINATION": {
+				"type": "Array"
+			},
+			"TEMP": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-23T03:21:34Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

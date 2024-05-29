@@ -1,0 +1,32 @@
+{
+	"name": "ds_metadata_container_onetoother",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_new_sql_dbname_01_blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "newsource01"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Number",
+				"type": "String"
+			},
+			{
+				"name": "Footnote",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

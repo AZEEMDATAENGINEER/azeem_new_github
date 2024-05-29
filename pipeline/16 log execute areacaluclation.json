@@ -1,0 +1,196 @@
+{
+	"name": "16 log execute areacaluclation",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderStoredProcedureName": "[ibm].[usppipelinestartlogs]",
+						"storedProcedureParameters": {
+							"pipelinename": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
+							},
+							"runid": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							"status": {
+								"type": "String",
+								"value": {
+									"value": "@variables('startingstatus')",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_sqlserver_areacaluclation_log_01",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "16 AREA CALUCLATION_copy1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[ibm].[usppipelineexecuteendlogs]",
+					"storedProcedureParameters": {
+						"errormessage": {
+							"value": null,
+							"type": "String"
+						},
+						"id": {
+							"value": {
+								"value": "@activity('Lookup1').output.firstrow.id",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"status": {
+							"value": {
+								"value": "@variables('endingsuccesstatus')",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_STOREDPROCEDURE_NEW_SQLSERVER_01",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Stored procedure1_copy1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[ibm].[usppipelineexecuteendlogs]",
+					"storedProcedureParameters": {
+						"errormessage": {
+							"value": {
+								"value": "@activity('Execute Pipeline1').errormessage",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"id": {
+							"value": {
+								"value": "@activity('Lookup1').output.firstrow.id",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"status": {
+							"value": {
+								"value": "@variables('endingfailedstatus')",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_STOREDPROCEDURE_NEW_SQLSERVER_01",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"variables": {
+			"startingstatus": {
+				"type": "String",
+				"defaultValue": "running"
+			},
+			"endingsuccesstatus": {
+				"type": "String",
+				"defaultValue": "success"
+			},
+			"endingfailedstatus": {
+				"type": "String",
+				"defaultValue": "failed"
+			}
+		},
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-28T17:28:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
