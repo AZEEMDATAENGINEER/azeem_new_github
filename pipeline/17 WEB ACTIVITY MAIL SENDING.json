@@ -1,0 +1,29 @@
+{
+	"name": "17 WEB ACTIVITY MAIL SENDING",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod2-10.centralindia.logic.azure.com:443/workflows/45bc4399bed64f9b9585840a0354920a/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=lpPUzz_EpJ6GMqByUgB46ZP_BYGPfQgDYd-TJSuBfoA",
+					"body": "{\n\"TO\":\"AZEEMDATAENGINEER@GMAIL.COM,\n\"SUBJECT\":\"THIS TESTING EMAIL FROM LOGIC APP\",\n\"BODY\" :\"THIS IS BODY OF EMAIL FROM LOGIC APP\"\n}"
+				}
+			}
+		],
+		"folder": {
+			"name": "newazeembatch"
+		},
+		"annotations": []
+	}
+}
